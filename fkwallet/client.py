@@ -150,6 +150,12 @@ class FKWalletClient:
             ) from exc
 
         outer = wrapper.get("data", {})
+
+        # Some endpoints return {"data": [...]} directly (list payload),
+        # others return {"data": {"status": "ok", "data": <payload>}}
+        if isinstance(outer, list):
+            return outer
+
         status = outer.get("status")
         if status != "ok":
             raise FKWalletAPIError(
@@ -158,7 +164,12 @@ class FKWalletClient:
                 raw=outer,
             )
 
-        return outer.get("data")
+        inner = outer.get("data")
+        # If inner is also a list, return it directly
+        if isinstance(inner, list):
+            return inner
+
+        return inner
 
     # ------------------------------------------------------------------
     # Account / misc endpoints
