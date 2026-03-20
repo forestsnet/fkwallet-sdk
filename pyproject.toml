@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fkwallet-sdk"
-version = "0.1.0"
+version = "0.1.1"
 description = "Python SDK for FKWallet API"
 authors = ["ForestsNet <dev@forestsnet.uk>"]
 readme = "README.md"
