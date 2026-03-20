@@ -22,7 +22,7 @@ jobs:
 
       - name: Pull latest changes
         if: ${{ !contains(github.event.head_commit.message, '[skip publish]') }}
-        run: git pull origin production --tags --force
+        run: git pull origin main --tags --force
 
       - name: Set up Python
         if: ${{ !contains(github.event.head_commit.message, '[skip publish]') }}
